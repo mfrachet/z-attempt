@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { CommentCard } from "~/modules/comments/components/CommentCard";
 import { CommentSurface } from "~/modules/comments/components/CommentSurface";
 import { comments } from "~/modules/comments/fixtures/comments";
 
@@ -12,11 +11,9 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <CommentSurface>
+    <CommentSurface comments={comments}>
       <main className="bg-slate-900 px-12 h-full">
-        {comments.map((comment) => (
-          <CommentCard key={comment.uuid} comment={comment} />
-        ))}
+        <h1>Hello world</h1>
       </main>
     </CommentSurface>
   );

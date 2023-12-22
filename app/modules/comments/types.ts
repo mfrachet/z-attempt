@@ -18,7 +18,7 @@ export interface Comment {
 }
 
 // DTOs for adding a comment
-export interface AddReplyDTO extends Omit<Reply, "uuid"> {}
-export interface AddCommentDTO extends Omit<Comment, "uuid" | "replies"> {
-  replies: Array<AddReplyDTO>;
+export interface DraftReply extends Omit<Reply, "uuid"> {}
+export interface DraftComment extends Omit<Comment, "uuid" | "replies"> {
+  replies: Array<DraftReply>;
 }

@@ -2,18 +2,22 @@ import { Card } from "~/ui/Card";
 import { IoIosSend } from "react-icons/io/index.js";
 import { Textarea } from "~/ui/Textarea";
 import { ReplyList } from "./ReplyList";
-import { Comment } from "../types";
+import { Comment, DraftComment } from "../types";
 import { ContentEntry } from "./ContentEntry";
-import { IconBase } from "react-icons";
 import { IconButton } from "~/ui/IconButton";
 
 export interface CommentCardProps {
-  comment: Comment;
+  comment: Comment | DraftComment;
 }
 
 export const CommentCard = ({ comment }: CommentCardProps) => {
+  const stylePosition = {
+    left: `${comment.positionX}%`,
+    top: `${comment.positionY}%`,
+  };
+
   return (
-    <div className="w-72 absolute">
+    <div className="w-72 absolute" style={stylePosition}>
       <Card>
         <div className="flex flex-col gap-4">
           <ContentEntry

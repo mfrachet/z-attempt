@@ -2,6 +2,7 @@ import { User } from "../users/types";
 
 export interface Reply {
   uuid: string;
+  author: User;
   content: string;
   date: Date;
 }

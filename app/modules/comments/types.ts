@@ -15,3 +15,9 @@ export interface Comment {
   positionX: number;
   positionY: number;
 }
+
+// DTOs for adding a comment
+export interface AddReplyDTO extends Omit<Reply, "uuid"> {}
+export interface AddCommentDTO extends Omit<Comment, "uuid" | "replies"> {
+  replies: Array<AddReplyDTO>;
+}

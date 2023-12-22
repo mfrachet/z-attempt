@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { CommentSurface } from "~/modules/comments/components/CommentSurface";
 import { comments as fixturesComments } from "~/modules/comments/fixtures/comments";
 import { addCommentFormAction } from "~/modules/comments/form-actions/addCommentFormAction";
+import { addReplyToCommentFormAction } from "~/modules/comments/form-actions/addReplyToCommentFormAction";
 import { Comment } from "~/modules/comments/types";
 import { marvin } from "~/modules/users/fixtures/users";
 
@@ -22,7 +23,15 @@ export const loader = (): LoaderData => {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
-  addCommentFormAction(formData);
+  const type = formData.get("_type")?.toString();
+
+  if (type === "add-comment") {
+    addCommentFormAction(formData);
+  }
+
+  if (type === "add-reply") {
+    addReplyToCommentFormAction(formData);
+  }
 
   return null;
 };

@@ -47,6 +47,7 @@ export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
 
       {draftComments.map((draftComment, index: number) => (
         <Form key={`draft-comment-${index}`} method="post">
+          <input type="hidden" name="_type" value="add-comment" />
           <input type="hidden" name="x" value={draftComment.positionX} />
           <input type="hidden" name="y" value={draftComment.positionY} />
           <CommentCard comment={draftComment} />
@@ -54,7 +55,11 @@ export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
       ))}
 
       {comments.map((comment) => (
-        <CommentCard key={comment.uuid} comment={comment} />
+        <Form key={comment.uuid} method="post">
+          <input type="hidden" name="_type" value="add-reply" />
+          <input type="hidden" name="commentid" value={comment.uuid} />
+          <CommentCard comment={comment} />
+        </Form>
       ))}
     </div>
   );

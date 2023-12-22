@@ -34,8 +34,8 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
           <ReplyList replies={comment.replies} />
 
           <Textarea
-            name="comment"
-            label="Add a comment"
+            name="content"
+            label="Add content"
             placeholder={"e.g: How does this scale?"}
             actions={
               <div className="flex flex-row gap-2 justify-between">

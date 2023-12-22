@@ -1,9 +1,10 @@
 import { comments as fixturesComments } from "~/modules/comments/fixtures/comments";
 import { marvin } from "~/modules/users/fixtures/users";
 import { Comment } from "~/modules/comments/types";
+import { nanoid } from "nanoid";
 
 export const addCommentFormAction = (formData: FormData) => {
-  const content = formData.get("comment")?.toString() || "";
+  const content = formData.get("content")?.toString() || "";
   const date = new Date().toISOString();
 
   const x = formData.get("x")?.toString() || "";
@@ -16,7 +17,7 @@ export const addCommentFormAction = (formData: FormData) => {
   // We'd need to get the current user :)
   const user = marvin;
   const comment: Comment = {
-    uuid: ``,
+    uuid: nanoid(),
     author: user,
     content,
     date,

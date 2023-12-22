@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Comment, DraftComment } from "../types";
 import { CommentCard } from "./CommentCard";
 import { marvin } from "~/modules/users/fixtures/users";
+import { Form } from "@remix-run/react";
 
 export interface CommentSurfaceProps {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
     const draftComment: DraftComment = {
       author: marvin,
       content: "",
-      date: new Date(),
+      date: "",
       replies: [],
       positionX: x,
       positionY: y,
@@ -45,7 +46,11 @@ export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
       {children}
 
       {draftComments.map((draftComment, index: number) => (
-        <CommentCard key={`draft-comment-${index}`} comment={draftComment} />
+        <Form key={`draft-comment-${index}`} method="post">
+          <input type="hidden" name="x" value={draftComment.positionX} />
+          <input type="hidden" name="y" value={draftComment.positionY} />
+          <CommentCard comment={draftComment} />
+        </Form>
       ))}
 
       {comments.map((comment) => (

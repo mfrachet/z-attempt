@@ -5,7 +5,7 @@ import { Typography } from "~/ui/Typography";
 export interface ContentEntryProps {
   author: User;
   content: string;
-  date: Date;
+  date: string;
 }
 
 export const ContentEntry = ({ author, content, date }: ContentEntryProps) => {

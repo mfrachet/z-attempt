@@ -4,14 +4,14 @@ export interface Reply {
   uuid: string;
   author: User;
   content: string;
-  date: Date;
+  date: string;
 }
 
 export interface Comment {
   uuid: string;
   author: User;
   content: string;
-  date: Date;
+  date: string;
   replies: Array<Reply>;
   positionX: number;
   positionY: number;

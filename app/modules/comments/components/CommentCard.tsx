@@ -32,8 +32,9 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
           />
 
           <ReplyList replies={comment.replies} />
+
           <Textarea
-            name="add-comment"
+            name="comment"
             label="Add a comment"
             placeholder={"e.g: How does this scale?"}
             actions={

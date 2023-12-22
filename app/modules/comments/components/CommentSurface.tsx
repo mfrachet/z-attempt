@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Comment, DraftComment } from "../types";
 import { CommentCard } from "./CommentCard";
 import { marvin } from "~/modules/users/fixtures/users";
@@ -9,8 +9,17 @@ export interface CommentSurfaceProps {
 }
 export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
   const [draftComments, setDraftComments] = useState<Array<DraftComment>>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+
+    if (
+      target.getAttribute("data-type") === "card" ||
+      target.closest('[data-type="card"]')
+    )
+      return;
+
     const x = (e.clientX / window.innerWidth) * 100;
     const y = (e.clientY / window.innerHeight) * 100;
 
@@ -28,7 +37,11 @@ export const CommentSurface = ({ children, comments }: CommentSurfaceProps) => {
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div className="relative h-full w-full" onClick={handleClick}>
+    <div
+      className="relative h-full w-full"
+      onClick={handleClick}
+      ref={wrapperRef}
+    >
       {children}
 
       {draftComments.map((draftComment, index: number) => (

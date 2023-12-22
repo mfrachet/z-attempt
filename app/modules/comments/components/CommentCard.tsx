@@ -17,7 +17,12 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
   };
 
   return (
-    <div className="w-72 absolute" style={stylePosition}>
+    <div
+      className="w-72 absolute"
+      style={stylePosition}
+      tabIndex={0}
+      data-type="card"
+    >
       <Card>
         <div className="flex flex-col gap-4">
           <ContentEntry
